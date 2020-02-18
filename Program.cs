@@ -11,58 +11,40 @@ namespace Snake
         static void Main(string[] args)
         {
 
-            Point p1 = new Point(1, 3, '*');
-            p1.Draw();
+            Point p1 = new Point(1, 1, '*');
+            Point p2 = new Point(2, 2, '#');
+            Point p3 = new Point(3, 3, '$');
+            Point p4 = new Point(4, 4, '&');
 
-            Point p2 = new Point(4, 5, '#');
-            p2.Draw();
 
+            List<Point> pList = new List<Point>();      // объявляем лист с точками и заполняем:
+            pList.Add(p1);
+            pList.Add(p2);
+            pList.Add(p3);
+            pList.Add(p4);
+
+            //выведем все точки в консоль:
+            foreach (var p in pList)
+            {
+                p.Draw();
+            }
+
+            //добавим отступ:
             Console.WriteLine();
 
-            int x = 1;
-            Func1(x);
-            Console.WriteLine($"Func1 x={x}");
+            List<char> cList = new List<char>();    // объявляем лист с символами и заполняем:
+            cList.Add('*');
+            cList.Add('|');
+            cList.Add('+');
+            cList.Add('=');
 
-            Func2(x);
-            Console.WriteLine($"Func2 x={x}");
-
-            Func3(x);
-            Console.WriteLine($"Func3 x={x}");
-
-            Move(p1, 10, 10);
-            Console.WriteLine($"Move(p1, 10, 10) p1.x = {p1.x}, p1.y = {p1.y}");
-
-            Reset(p2);
-            Console.WriteLine($"Reset(p2) p2.x = {p2.x}, p2.y = {p2.y}");
+            //выведем все символы в консоль:
+            for (var c = 0; c < cList.Count; c++)
+            {
+                Console.Write(cList[c] + " ");
+            }
 
             Console.ReadKey();
-        }
-
-        private static void Reset(Point p)
-        {
-            p = new Point();
-            //  Здесь переменная p2 останется без изменений.
-        }
-
-        private static void Move(Point p, int dx, int dy)
-        {
-            p.x = p.x + dx;
-            p.y = p.y + dy;
-        }
-
-        private static void Func3(int x)
-        {
-            x++;
-        }
-
-        private static void Func2(int val)
-        {
-            val++;
-        }
-
-        private static void Func1(int x)
-        {
-
         }
     }
 }
