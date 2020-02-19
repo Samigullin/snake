@@ -23,6 +23,12 @@ namespace Snake
             VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
             rightLine.DrawAll();
 
+            
+
+            Point p = new Point(4, 5, '*');
+            Snake snake = new Snake(p, 4, Direction.RIGHT);
+
+            snake.DrawAll();
 
 
 
