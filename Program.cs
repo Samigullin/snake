@@ -16,38 +16,38 @@ namespace Snake
             Console.SetBufferSize(80, 25);
             Console.SetWindowSize(80, 25);
 
+            //Рамка:
             HorizontalLine upLine = new HorizontalLine(0, 78, 0, '+');
-            upLine.DrawAll();
+            upLine.Draw();
             HorizontalLine downLine = new HorizontalLine(0, 78, 24, '+');
-            downLine.DrawAll();
+            downLine.Draw();
             VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
-            leftLine.DrawAll();
+            leftLine.Draw();
             VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
-            rightLine.DrawAll();
-
-            
+            rightLine.Draw();      
+            //.Рамка
 
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
+            snake.Draw();
 
-            snake.DrawAll();
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
+            while (true)
+            {
+                if (Console.KeyAvailable)              
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();      //считываем клавишу
+                    snake.HandleKey(key.Key);
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
 
 
 
 
-            Console.ReadKey();
+
+
+
         }
     }
 }
