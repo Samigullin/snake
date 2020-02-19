@@ -30,6 +30,11 @@ namespace Snake
             sym = p.sym;
         }
 
+        public override string ToString()
+        {
+            return x + ", " + y + ", " + sym;
+        }
+
         public void Move(int offset, Direction direction)
         {
             if (direction == Direction.RIGHT)
@@ -49,6 +54,13 @@ namespace Snake
                 y = y + offset;
             }
         }
+
+        internal void Clear()
+        {
+            sym = ' ';
+            Draw();
+        }
+
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
