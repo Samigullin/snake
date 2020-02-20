@@ -8,14 +8,37 @@ namespace Snake
 {
     class Figure
     {
-        protected List<Point> pList = new List<Point>();
+        protected List<Point> pList;// = new List<Point>();
 
-        public void DrawAll()
+        public void Draw()
         {
             foreach (Point p in pList)
             {
                 p.Draw();
             }
+        }
+
+        internal bool IsHit(Figure figure)
+        {
+            foreach (var p in pList)
+            {
+                if (figure.IsHit(p))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool IsHit(Point point)
+        {
+            foreach (var p in pList)
+            {
+                if (point.IsHit(p))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
