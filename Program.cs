@@ -15,29 +15,32 @@ namespace Snake
             Console.SetWindowSize(80, 25);
             Console.SetBufferSize(80, 25);
             Console.SetWindowSize(80, 25);
-
-            //Рамка:
-            HorizontalLine upLine = new HorizontalLine(0, 78, 0, '+');
-            upLine.Draw();
-            HorizontalLine downLine = new HorizontalLine(0, 78, 24, '+');
-            downLine.Draw();
-            VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
-            leftLine.Draw();
-            VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
-            rightLine.Draw();      
-            //.Рамка
+            Walls walls = new Walls(80, 25);
+            walls.Draw();
 
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.Draw();
 
-            FoodCreator foodCreator = new FoodCreator(80, 25, '*');
+            FoodCreator foodCreator = new FoodCreator(80, 25, '@');
             Point food = foodCreator.CreateFood();
             food.Draw();
             try
             {
                 while (true)
                 {
+                    if (walls.IsHit(snake))
+                    {
+                        Console.WriteLine("Вы ударились в стену. Игра окончена!");
+                        Console.ReadLine();
+                        break;
+                    }
+                    if (snake.IsHitTail())
+                    {
+                        Console.WriteLine("Вы ударились в свой хвост. Игра окончена!");
+                        Console.ReadLine();
+                        break;
+                    }
                     if (snake.Eat(food))
                     {
                         food = foodCreator.CreateFood();
@@ -59,7 +62,7 @@ namespace Snake
             catch(ArgumentOutOfRangeException) 
             { 
                 Console.WriteLine("Вы ударились в стену. Игра окончена!");
-                Console.ReadKey();
+                Console.ReadLine();
             }
         }
     }

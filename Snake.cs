@@ -33,6 +33,19 @@ namespace Snake
             head.Draw();                            //рисуем бошку в консоли
         }
 
+        internal bool IsHitTail()
+        {
+            var head = pList.Last();
+            for (int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i])) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Point GetNextPoint()                 //смещение головы змейки на одну точку вперед
         {
             Point head = pList.Last();
