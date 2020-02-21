@@ -25,24 +25,35 @@ namespace Snake
             FoodCreator foodCreator = new FoodCreator(80, 25, '@');
             Point food = foodCreator.CreateFood();
             food.Draw();
+            int speed = 200;
             try
             {
                 while (true)
                 {
                     if (walls.IsHit(snake))
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Walls ramka = new Walls(18, 57, 11, 13, '#');
+                        ramka.Draw();
+                        Console.SetCursorPosition(20, 12);
                         Console.WriteLine("Вы ударились в стену. Игра окончена!");
                         Console.ReadLine();
+
                         break;
                     }
                     if (snake.IsHitTail())
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Walls ramka = new Walls(18, 62, 11, 13, '#');
+                        ramka.Draw();
+                        Console.SetCursorPosition(20, 12);
                         Console.WriteLine("Вы ударились в свой хвост. Игра окончена!");
                         Console.ReadLine();
                         break;
                     }
                     if (snake.Eat(food))
                     {
+                        speed -= 10;
                         food = foodCreator.CreateFood();
                         food.Draw();
                     }
@@ -50,7 +61,7 @@ namespace Snake
                     {
                         snake.Move();
                     }
-                    Thread.Sleep(100);
+                    Thread.Sleep(speed);
 
                     if (Console.KeyAvailable)
                     {

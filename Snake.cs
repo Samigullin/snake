@@ -69,13 +69,13 @@ namespace Snake
 
         public void HandleKey (ConsoleKey key)      //смена направления по нажатию на стрелки
         {
-            if (key == ConsoleKey.LeftArrow)
+            if (key == ConsoleKey.LeftArrow && direction != Direction.RIGHT)
                 direction = Direction.LEFT;
-            else if (key == ConsoleKey.RightArrow)
+            else if (key == ConsoleKey.RightArrow && direction != Direction.LEFT)
                 direction = Direction.RIGHT;
-            else if (key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow && direction != Direction.DOWN)
                 direction = Direction.UP;
-            else if (key == ConsoleKey.DownArrow)
+            else if (key == ConsoleKey.DownArrow && direction != Direction.UP)
                 direction = Direction.DOWN;
         }
     }

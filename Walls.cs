@@ -23,6 +23,20 @@ namespace Snake
             wallist.Add(rightLine);
 
         }
+
+        public Walls(int x1, int x2, int y1, int y2, char symbol)
+        {
+            wallist = new List<Figure>();
+            HorizontalLine upLine = new HorizontalLine(x1, x2, y1, symbol);
+            HorizontalLine downLine = new HorizontalLine(x1, x2, y2, symbol);
+            VerticalLine leftLine = new VerticalLine(y1, y2, x1, symbol);
+            VerticalLine rightLine = new VerticalLine(y1, y2, x2, symbol);
+            wallist.Add(upLine);
+            wallist.Add(downLine);
+            wallist.Add(leftLine);
+            wallist.Add(rightLine);
+
+        }
         internal bool IsHit(Figure figure)
         {
             foreach (var wall in wallist)
